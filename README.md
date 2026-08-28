@@ -1,49 +1,64 @@
-# AI KNOWLEDGE ASSISTANT
+# 🧠 AI Knowledge Assistant
 
-*AGENTE INTELIGENTE COM RAG PARA CONSULTA E GESTÃO DE CONHECIMENTO DOCUMENTAL*
+> **RAG-based AI assistant for semantic document search, contextual Q&A and persistent knowledge management using FAISS, embeddings and Google Gemini.**
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)
-![Google Gemini](https://img.shields.io/badge/Gemini-1.5%20Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)
-![Gradio](https://img.shields.io/badge/Gradio-UI-ff69b4?style=for-the-badge&logo=gradio&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)
+![Gradio](https://img.shields.io/badge/Gradio-Interface-FF7C00?style=for-the-badge&logo=gradio&logoColor=white)
 ![FAISS](https://img.shields.io/badge/FAISS-Vector%20Search-0052CC?style=for-the-badge)
-![Colab](https://img.shields.io/badge/Google%20Colab-Suportado-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)
-![Drive](https://img.shields.io/badge/Google%20Drive-Persistência-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Funcionando-brightgreen?style=for-the-badge)
+![RAG](https://img.shields.io/badge/RAG-Retrieval%20Augmented%20Generation-6C63FF?style=for-the-badge)
+![Google Drive](https://img.shields.io/badge/Google%20Drive-Persistence-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)
 
 ---
 
-### 🏆 Desafio
+## 💼 Sobre o Projeto
 
-1. Criar um agente de IA
-2. Processar documentos (PDF/CSV)
-3. Fazer deploy na Oracle Cloud (OCI)
+O **AI Knowledge Assistant** é uma aplicação de Inteligência Artificial Generativa desenvolvida para transformar documentos em uma **base de conhecimento pesquisável, persistente e consultável em linguagem natural**.
 
----
+A solução utiliza uma arquitetura de **Retrieval-Augmented Generation (RAG)** para combinar recuperação semântica de informações com geração de respostas contextualizadas.
 
-### 📌 Sobre o Projeto
+O fluxo integra:
 
-Uma solução de Inteligência Artificial Generativa desenvolvida para transformar documentos técnicos em uma ***base de conhecimento pesquisável e persistente***.
-A aplicação utiliza uma arquitetura baseada em ***Retrieval-Augmented Generation (RAG)***, combinando processamento de documentos, embeddings semânticos, busca vetorial com FAISS e Google Gemini para responder perguntas em linguagem natural utilizando o conteúdo recuperado da base documental.
+- processamento de documentos;
+- divisão do conteúdo em chunks;
+- geração de embeddings;
+- indexação vetorial com FAISS;
+- busca por similaridade;
+- recuperação de contexto;
+- geração de respostas com Google Gemini.
 
-O projeto foi desenvolvido no ***Challenge ONE AI Tech Builder — Oracle Next Education (ONE) / Alura***, explorando conceitos de IA Generativa, processamento de documentos, busca semântica e gestão de conhecimento.
-Permitindo que você mantenha os documentos e o índice FAISS entre diferentes sessões no Google Colab e a outra, a possibilidade de se carregar novos arquivos, criando assim novas bases de dados. 
-
----
-
-### 🎯 Objetivo
-
-Desenvolver um assistente inteligente capaz de transformar documentos pessoais ou corporativos em uma base de conhecimento consultável por meio de linguagem natural.
-A solução busca reduzir o esforço necessário para localizar e interpretar informações distribuídas em documentos extensos, permitindo que o usuário realize perguntas e receba respostas contextualizadas a partir do conteúdo disponível na base.
+O projeto foi desenvolvido no **Challenge ONE AI Tech Builder**, integrante do programa **Oracle Next Education (ONE) / Alura**.
 
 ---
 
-### 💡 Solução Proposta
+## 🎯 Objetivo
 
-O AI Knowledge Assistant processa os documentos adicionados à base, divide o conteúdo em trechos menores (chunks), gera representações vetoriais (embeddings) e cria um índice utilizando FAISS.
-Quando uma pergunta é realizada, o sistema utiliza busca por similaridade para localizar os trechos semanticamente mais relevantes e fornece esse contexto ao modelo de linguagem para geração da resposta. 
+Desenvolver um assistente capaz de reduzir o esforço necessário para localizar e interpretar informações distribuídas em documentos extensos.
+
+A proposta é permitir que usuários consultem documentos pessoais, técnicos ou corporativos utilizando linguagem natural e recebam respostas baseadas no conteúdo efetivamente disponível na base de conhecimento.
+
+---
+
+## 💡 Problema
+
+Empresas, profissionais e estudantes acumulam grandes volumes de informação em arquivos como PDFs, documentos de texto, manuais, relatórios e materiais técnicos.
+
+O problema não está apenas em armazenar esses documentos, mas em **recuperar rapidamente informações relevantes dentro deles**.
+
+Buscas tradicionais por palavras-chave podem falhar quando:
+
+- o usuário não conhece o termo exato utilizado no documento;
+- a informação está distribuída em diferentes trechos;
+- o conteúdo precisa ser interpretado em contexto;
+- vários documentos precisam ser consultados ao mesmo tempo.
+
+O AI Knowledge Assistant utiliza busca semântica e RAG para tornar esse conhecimento mais acessível.
+
+---
+
+## 🧠 Como a Solução Funciona
 
 ```text
-
 Documentos
 PDF | DOCX | TXT | MD
         ↓
@@ -58,61 +73,79 @@ Embeddings
 FAISS
 Indexação Vetorial
         ↓
+Pergunta do Usuário
+        ↓
+Embedding da Consulta
+        ↓
 Busca por Similaridade
         ↓
 Contexto Recuperado
         ↓
 Google Gemini
         ↓
-Resposta em Linguagem Natural
-
+Resposta Contextualizada
 ```
----
 
-### ✨ Principais Funcionalidades
+A aplicação separa o processo em duas etapas principais:
 
-📂 Gestão da Base Documental
-- Importação automática de documentos armazenados no Google Drive
-- Upload manual de novos documentos
-- Suporte a PDF, DOCX, TXT e Markdown
-- Possibilidade de criação e atualização de diferentes bases documentais
+**Indexação**
+- processamento dos documentos;
+- criação de chunks;
+- geração dos embeddings;
+- armazenamento no índice vetorial.
 
-🧠 Busca Semântica
-- Divisão automática dos documentos em chunks
-- Geração de embeddings semânticos
-- Indexação vetorial com FAISS
-- Recuperação dos trechos mais relevantes para cada consulta
-
-💬 Consulta em Linguagem Natural
-
-- O usuário pode realizar perguntas diretamente sobre os documentos armazenados na base.
-- O sistema recupera o contexto relevante e utiliza o Google Gemini para produzir respostas contextualizadas.
-
-💾 Persistência da Base de Conhecimento
-
-A base é armazenada no Google Drive, permitindo preservar:
-
-- Documentos processados
-- Chunks de texto
-- Metadados
-- Índice vetorial FAISS
-
-Dessa forma, o índice pode ser reutilizado entre diferentes sessões do Google Colab sem necessidade de reconstrução completa da base.
-
-📤 Recursos adicionais
-- Exportação da conversa em arquivo .txt
-- Limpeza do histórico da conversa
-- Exemplos de perguntas
-- Interface interativa desenvolvida com Gradio
-
---- 
-
-### ❗ Diferencial
-Diferente de buscadores tradicionais, o agente **compreende o contexto** e responde em **linguagem natural**, sem que o usuário precise ler documentos extensos.
+**Consulta**
+- transformação da pergunta em embedding;
+- recuperação dos trechos semanticamente mais relevantes;
+- envio do contexto recuperado ao modelo de linguagem;
+- geração da resposta final.
 
 ---
 
-### 🏗️ Arquitetura da Solução
+## ✨ Principais Funcionalidades
+
+### 📂 Gestão de Documentos
+
+- importação automática de documentos armazenados no Google Drive;
+- upload manual de novos arquivos;
+- suporte a PDF, DOCX, TXT e Markdown;
+- criação e atualização de bases documentais.
+
+### 🧠 Busca Semântica
+
+- divisão automática dos documentos em chunks;
+- geração de embeddings;
+- indexação com FAISS;
+- recuperação dos trechos mais relevantes para cada pergunta.
+
+### 💬 Consulta em Linguagem Natural
+
+O usuário pode realizar perguntas diretamente sobre a base documental.
+
+O sistema recupera o contexto relevante e utiliza o Google Gemini para gerar respostas contextualizadas a partir das informações encontradas.
+
+### 💾 Persistência da Base
+
+A estrutura da base pode ser armazenada no Google Drive, preservando:
+
+- documentos;
+- chunks;
+- metadados;
+- índice FAISS.
+
+Isso permite reutilizar a base entre diferentes sessões no Google Colab sem reconstruir todo o pipeline.
+
+### 📤 Recursos Adicionais
+
+- exportação da conversa em `.txt`;
+- limpeza do histórico;
+- exemplos de perguntas;
+- interface interativa em Gradio;
+- seleção de diferentes bases documentais.
+
+---
+
+## 🏗️ Arquitetura da Solução
 
 ```text
                    ┌─────────────────────┐
@@ -130,12 +163,12 @@ Diferente de buscadores tradicionais, o agente **compreende o contexto** e respo
                               ↓
                    ┌─────────────────────┐
                    │     Embeddings      │
-                   │Sentence Transformers│
+                   │ Sentence Transformers│
                    └──────────┬──────────┘
                               ↓
                    ┌─────────────────────┐
                    │        FAISS        │
-                   │   Vector Database   │
+                   │   Vector Search     │
                    └──────────┬──────────┘
                               ↑
                               │
@@ -157,61 +190,66 @@ Pergunta → Embedding → Busca por Similaridade
 
 ---
 
-### 🎨 Interface Personalizada
-Este agente possui uma interface moderna com : 
+## 🛠️ Tecnologias Utilizadas
 
-- Temas personalizáveis (azul, roxo, verde, laranja, escuro)
-- Upload de documentos via interface
-- Exemplos de perguntas prontas para uso
-- Respostas em linguagem natural baseadas nos documentos
-
----
-
-### 🛠️ Tecnologias
-
-- **Python**: Desenvolvimento da solução
-- **Google Colab**: Ambiente de desenvolvimento e execução
-- **Google Gemini**: Modelo de linguagem para geração de respostas
-- **Gradio**: Criação da interface web interativa
-- **Sentence Transformers**: Geração de embeddings para busca semântica
-- **FAISS**: Indexação e busca vetorial de alta performance
-- **PyPDF/PyPDF2**: Leitura e extração de arquivos PDF
-- **python-docx**: Processamento e extração de conteúdo de documentos DOCX
-- **Google Drive**: Armazenamento persistente dos documentos e da base de dados (chunks, metadados e índice)
+| Tecnologia | Aplicação |
+|---|---|
+| **Python** | Desenvolvimento da solução |
+| **Google Gemini** | Geração das respostas |
+| **Sentence Transformers** | Geração de embeddings |
+| **FAISS** | Indexação e busca vetorial |
+| **Gradio** | Interface web interativa |
+| **Google Colab** | Ambiente de desenvolvimento e execução |
+| **Google Drive** | Persistência dos documentos e índices |
+| **PyPDF / PyPDF2** | Extração de conteúdo de PDFs |
+| **python-docx** | Processamento de documentos DOCX |
 
 ---
 
-### 📚 Base de Conhecimento utilizada
+## 📚 Base de Conhecimento de Demonstração
 
-Para demonstração da solução, foi construída uma base documental envolvendo temas relacionados a Inteligência Artificial, Governança de IA e Análise de Dados.
-Entre os documentos utilizados estão: 
+Para demonstrar o funcionamento do projeto, foi utilizada uma base documental com conteúdos relacionados a:
 
-- 📄 Governança de IA no Setor Público
-- 📘 Manual de Inteligência Artificial
-- 📚 Inteligência Artificial: Avanços e Tendências
-- 📊 Análise de Dados: Da Teoria à Prática
+- Inteligência Artificial;
+- Governança de IA;
+- Análise de Dados.
 
-A arquitetura permite substituir ou ampliar essa base com novos documentos.
+Entre os documentos utilizados estão:
+
+- **Governança de IA no Setor Público**
+- **Manual de Inteligência Artificial**
+- **Inteligência Artificial: Avanços e Tendências**
+- **Análise de Dados: Da Teoria à Prática**
+
+A arquitetura permite substituir ou ampliar essa base com outros documentos.
 
 ---
 
-### 🖥️ Interface
+## 📸 Demonstração da Aplicação
 
-- Foi desenvolvida utilizando Gradio, permitindo gerenciar a base documental e realizar consultas diretamente pelo navegador.
+A interface foi desenvolvida com **Gradio** e executada em ambiente Google Colab.
 
-**Interface principal**
+Como a aplicação utiliza uma instância temporária do Gradio, o endereço público gerado durante a execução não permanece disponível após o encerramento da sessão.
 
-- Permite selecionar uma base armazenada no Google Drive, adicionar novos documentos e realizar perguntas em linguagem natural.
+### Interface principal
 
-**💬 Exemplo de consulta e resposta**
+A interface permite selecionar uma base documental, adicionar documentos e realizar consultas em linguagem natural.
 
-- Após a consulta, o agente recupera informações relevantes da base documental e apresenta uma resposta estruturada ao usuário.
+![Interface principal do AI Knowledge Assistant](docs/prints/Alura-Agente-Imagem-do-Agente.png)
 
-**💾 Persistência no Google Drive**
+### Exemplo de consulta e resposta
 
-- A solução mantém uma estrutura persistente para evitar a reconstrução da base após cada sessão.
+O exemplo abaixo demonstra uma consulta realizada sobre a base documental e a resposta contextualizada gerada pelo assistente.
 
-```
+![Exemplo de consulta ao AI Knowledge Assistant](docs/prints/Alura-Agente-Imagem-Pergunta-Respondida.png)
+
+---
+
+## 💾 Persistência da Base de Conhecimento
+
+A solução utiliza o Google Drive para armazenar os artefatos necessários à reutilização da base:
+
+```text
 Google Drive/
 │
 ├── Agente_Alura_Documentos/
@@ -224,17 +262,16 @@ Google Drive/
     ├── metadados.json
     ├── indice.faiss
     └── arquivos/
-
 ```
 
-Essa abordagem permite reutilizar documentos, embeddings e índices vetoriais em diferentes sessões.
+Essa abordagem evita a reconstrução completa da base sempre que uma nova sessão do Colab é iniciada.
 
 ---
 
-### 📁 Estrutura do Repositório
+## 📁 Estrutura do Repositório
 
 ```text
-CHALLENGE-ONE-AI-TECH-BUILDER-AI-Knowledge-Assitant/
+Challenge-ONE-AI-Tech-Builder-AI-Knowledge-Assitant/
 │
 ├── docs/
 │   └── prints/
@@ -251,121 +288,72 @@ CHALLENGE-ONE-AI-TECH-BUILDER-AI-Knowledge-Assitant/
 
 ---
 
-### 🔐 Segurança
+## 🔐 Segurança
 
-As credenciais de acesso aos serviços externos não devem ser armazenadas diretamente no código ou versionadas no GitHub.
-Para execução do projeto, as chaves de API devem ser configuradas utilizando mecanismos apropriados de gerenciamento de secrets do ambiente de execução.
+Credenciais e chaves de API não devem ser armazenadas diretamente no código nem versionadas no GitHub.
 
----
-
-### 🗺️ Roadmap
-
-Possíveis evoluções futuras:
-
-- Implementação de Agentic RAG
-- Orquestração de fluxos utilizando LangGraph
-- Busca híbrida semântica + palavras-chave
-- Avaliação automática da qualidade das respostas
-- Observabilidade do pipeline RAG
-- Ampliação dos mecanismos de citação e rastreabilidade das fontes
-- Containerização com Docker
-- API REST para integração com outros sistemas
-- Deploy persistente em Cloud
+Para executar a aplicação, as credenciais necessárias devem ser configuradas utilizando mecanismos apropriados de gerenciamento de secrets do ambiente.
 
 ---
 
-### 📸 Demonstração da Aplicação
+## 💡 Competências Demonstradas
 
-A interface do AI Knowledge Assistant foi desenvolvida com **Gradio** e executada em ambiente Google Colab.
-Como a aplicação utiliza uma instância temporária do Gradio, o endereço público é gerado durante a execução e não permanece disponível após o encerramento da sessão.
+O projeto aplica conhecimentos e práticas relacionados a:
 
-### Interface principal
-
-A interface permite selecionar a base documental, adicionar documentos e realizar consultas em linguagem natural.
-
-![📄 Agente Funcionando](docs/prints/Alura-Agente-Imagem-do-Agente.png)
-*📄 Agente Funcionando*
-
-### 💬 Exemplo de consulta e resposta
-
-O exemplo abaixo demonstra uma consulta realizada sobre a base documental e a resposta contextualizada gerada pelo agente.
-
-![💬 Exemplo de Pergunta](docs/prints/Alura-Agente-Imagem-Pergunta-Respondida.png)
-*💬 Exemplo de pergunta e 🎯 resposta completa e estruturada ao agente* 
-
----
-
-### 📚 Contexto Acadêmico
-
-- Projeto desenvolvido no Challenge ONE AI Tech Builder, integrante do programa Oracle Next Education (ONE) / Alura.
-- O desafio teve como objetivo aplicar conceitos de Inteligência Artificial na construção de uma solução capaz de processar documentos e permitir sua consulta utilizando linguagem natural.📚 Contexto Acadêmico
-
---- 
-
-### 🤝 Como Contribuir
-
-Contribuições são bem-vindas para ampliar as capacidades do **AI Knowledge Assistant** e explorar novas abordagens em RAG, IA Generativa e recuperação de conhecimento.
-
-Algumas áreas interessantes para contribuição incluem:
-
-- Novos formatos de documentos e fontes de conhecimento
-- Melhorias no processo de chunking e recuperação
-- Experimentação com diferentes modelos de embeddings
-- Integração com bancos vetoriais
-- Avaliação da qualidade das respostas do RAG
-- Melhorias na interface e experiência do usuário
-- Implementação de APIs
-- Observabilidade e monitoramento
-- Novas estratégias de recuperação e reranking
-
-### Para contribuir
-
-1. Faça um **Fork** do repositório
-2. Crie uma branch para sua contribuição:
-
-```bash
-git checkout -b feature/nova-funcionalidade
-
-```
-
-3. Faça suas alterações e registre o commit:
-
-```bash
-git commit -m "Adiciona nova funcionalidade"
-
-````
-
-4. Envie sua branch:
-
-```bash
-git push origin feature/nova-funcionalidade
-
-```
-
-5. Abra um **Pull Request** descrevendo a proposta, as alterações realizadas e, quando aplicável, os resultados obtidos.
-
-Contribuições relacionadas a RAG, NLP, LLMs, embeddings, busca semântica e Engenharia de IA são especialmente bem-vindas.   
-
---- 
-
-### 🙏 Agradecimentos
-
-- Oracle Next Education (ONE) - Pela Oportunidade e Mentoria
- 
-- Mentores e Organizadores - Pelo Suporte e Orientação
+- Generative AI;
+- Retrieval-Augmented Generation (RAG);
+- Large Language Models;
+- semantic search;
+- embeddings;
+- vector search;
+- FAISS;
+- document processing;
+- NLP;
+- knowledge management;
+- prompt engineering;
+- Python;
+- Gradio;
+- Google Gemini;
+- persistência de dados;
+- arquitetura de aplicações de IA.
 
 ---
 
-### 👨‍💻 Autor
+## 🗺️ Roadmap
 
-Marcus Guedes
+Possíveis evoluções futuras incluem:
 
-Marketing | Data Science | Inteligência Artificial | Gestão de Projetos
-
-GitHub: MCLG1661
-
-LinkedIn: Marcus Guedes
+- Agentic RAG;
+- orquestração de fluxos com LangGraph;
+- busca híbrida semântica + palavras-chave;
+- reranking;
+- avaliação automática da qualidade das respostas;
+- observabilidade do pipeline RAG;
+- ampliação dos mecanismos de citação e rastreabilidade;
+- containerização com Docker;
+- API REST;
+- deploy persistente em Cloud;
+- autenticação e controle de acesso.
 
 ---
 
-⭐ Projeto desenvolvido como **CHALLENGE do ONE AI TECH BUILDER**
+## 🎓 Contexto Acadêmico
+
+Projeto desenvolvido no **Challenge ONE AI Tech Builder**, integrante do programa **Oracle Next Education (ONE) / Alura**.
+
+O desafio teve como objetivo aplicar conceitos de Inteligência Artificial na construção de uma solução capaz de processar documentos e permitir consultas utilizando linguagem natural.
+
+---
+
+## 👤 Autor
+
+**Marcus Guedes**
+
+Marketing • Gestão de Projetos • Data Analytics • Inteligência Artificial aplicada a negócios
+
+- GitHub: [MCLG1661](https://github.com/MCLG1661)
+- LinkedIn: [Marcus Guedes](https://www.linkedin.com/in/marcusguedes/)
+
+---
+
+⭐ Projeto de estudo e portfólio voltado à aplicação prática de **RAG, busca semântica, embeddings e Inteligência Artificial Generativa para gestão de conhecimento documental**.
