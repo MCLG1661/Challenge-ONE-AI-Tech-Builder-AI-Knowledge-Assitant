@@ -345,6 +345,13 @@ O desafio teve como objetivo aplicar conceitos de Inteligência Artificial na co
 
 ---
 
+## Agradecimento
+
+Agradecimentos a **Alura** pelo curso que me possibilitou acesso a mais essa certificação, a **Oracle**, aqui representada pelo **Jose Dario Gonzalez Charris**
+pelos excelentes conteúdos de preparação que me capacitaram e aos professores **Eric Monné Fraga de Oliveira**, **Lucas Ribeiro Mata**, **Rodrigo da Silva Ferreira Caneppele**, **Gabrielle R**., **Essias Alves Souza**, ** Brenda Silva**, **Fabrício Carraro** e **Gustavo Sant'ana** por gentilmente dividirem conhecimento. 
+
+---
+
 ## 👤 Autor
 
 **Marcus Guedes**
