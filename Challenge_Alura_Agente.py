@@ -8,7 +8,7 @@ Original file is located at
 """
 
 # Execute esta instalação em uma célula separada no Google Colab:
-!pip install -q -U gradio faiss-cpu sentence-transformers pypdf python-docx google-genai
+# !pip install -q -U gradio faiss-cpu sentence-transformers pypdf python-docx google-genai
 
 # ============================================================
 # AGENTE ALURA — RAG PERSISTENTE COM GRADIO + GEMINI
@@ -24,6 +24,7 @@ from pypdf import PdfReader
 from docx import Document
 from pathlib import Path
 import hashlib
+import getpass
 import json
 import os
 import pickle
@@ -50,16 +51,16 @@ ARQUIVOS_DIR.mkdir(parents=True, exist_ok=True)
 PASTA_DOCUMENTOS_DRIVE.mkdir(parents=True, exist_ok=True)
 
 # A chave deve ser criada em:
-# Colab > ícone da chave > Secrets > GEMINI_API_KEY
+# Colab > ícone da chave > Secrets > ALURA_AGENTE_API_KEY
 try:
     API_KEY = userdata.get("ALURA_AGENTE_API_KEY")
 except Exception as exc:
     raise RuntimeError(
-        "Crie o Secret GEMINI_API_KEY no Google Colab antes de executar."
+        "Crie o Secret ALURA_AGENTE_API_KEY no Google Colab antes de executar."
     ) from exc
 
 if not API_KEY:
-    raise RuntimeError("O Secret GEMINI_API_KEY está vazio.")
+    raise RuntimeError("O Secret ALURA_AGENTE_API_KEY está vazio.")
 
 client = genai.Client(api_key=API_KEY)
 
@@ -305,9 +306,6 @@ def adicionar_documentos(arquivos):
 
     if novos_chunks:
         with lock:
-            todos_chunks.extend(novos_chunks)
-            metadados_chunks.extend(novos_metadados)
-
             embeddings = embedding_model.encode(
                 novos_chunks,
                 normalize_embeddings=True,
@@ -315,6 +313,8 @@ def adicionar_documentos(arquivos):
             )
             embeddings = np.asarray(embeddings, dtype="float32")
             index.add(embeddings)
+            todos_chunks.extend(novos_chunks)
+            metadados_chunks.extend(novos_metadados)
             salvar_base()
 
     mensagens = []
@@ -1102,4 +1102,7 @@ with gr.Blocks(css=css, theme=gr.themes.Base(), title="AI Knowledge Assistant") 
 print("🚀 Interface pronta.")
 print(f"📂 Pasta padrão do Drive: {PASTA_DOCUMENTOS_DRIVE}")
 print(status_base())
-demo.queue().launch(share=True, debug=True)
+senha_gradio = getpass.getpass("Defina uma senha forte para o acesso ao Gradio: ")
+if not senha_gradio.strip():
+    raise ValueError("A senha do Gradio não pode estar vazia.")
+demo.queue().launch(share=True, debug=False, auth=("admin", senha_gradio))
