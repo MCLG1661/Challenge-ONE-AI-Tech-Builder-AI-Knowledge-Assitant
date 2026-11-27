@@ -3,7 +3,7 @@
 > **RAG-based AI assistant for semantic document search, contextual Q&A and persistent knowledge management using FAISS, embeddings and Google Gemini.**
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white)
-![Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)
 ![Gradio](https://img.shields.io/badge/Gradio-Interface-FF7C00?style=for-the-badge&logo=gradio&logoColor=white)
 ![FAISS](https://img.shields.io/badge/FAISS-Vector%20Search-0052CC?style=for-the-badge)
 ![RAG](https://img.shields.io/badge/RAG-Retrieval%20Augmented%20Generation-6C63FF?style=for-the-badge)
@@ -137,11 +137,11 @@ Isso permite reutilizar a base entre diferentes sessões no Google Colab sem rec
 
 ### 📤 Recursos Adicionais
 
-- exportação da conversa em `.txt`;
-- limpeza do histórico;
+- cópia da resposta para a área de transferência;
+- limpeza da pergunta e resposta exibidas;
 - exemplos de perguntas;
 - interface interativa em Gradio;
-- seleção de diferentes bases documentais.
+- importação de documentos de diferentes pastas para uma base compartilhada.
 
 ---
 
@@ -233,7 +233,7 @@ Como a aplicação utiliza uma instância temporária do Gradio, o endereço pú
 
 ### Interface principal
 
-A interface permite selecionar uma base documental, adicionar documentos e realizar consultas em linguagem natural.
+A interface permite importar documentos de uma pasta, adicionar documentos e realizar consultas em linguagem natural.
 
 ![Interface principal do AI Knowledge Assistant](docs/prints/Alura-Agente-Imagem-do-Agente.png)
 
@@ -292,7 +292,13 @@ Challenge-ONE-AI-Tech-Builder-AI-Knowledge-Assitant/
 
 Credenciais e chaves de API não devem ser armazenadas diretamente no código nem versionadas no GitHub.
 
-Para executar a aplicação, as credenciais necessárias devem ser configuradas utilizando mecanismos apropriados de gerenciamento de secrets do ambiente.
+Para executar no Google Colab, configure o Secret `ALURA_AGENTE_API_KEY` e execute a instalação em uma célula separada:
+
+```python
+!pip install -q -U gradio faiss-cpu sentence-transformers pypdf python-docx google-genai
+```
+
+Ao iniciar a interface, defina uma senha forte no prompt do Colab. O login do Gradio utiliza o usuário `admin` e essa senha, sem gravá-la no repositório. Compartilhe o link e as credenciais apenas com pessoas autorizadas a consultar e modificar a base. A interface utiliza uma única base compartilhada, sem isolamento entre usuários autenticados. Carregue somente arquivos de persistência confiáveis, pois o código utiliza pickle.
 
 ---
 
